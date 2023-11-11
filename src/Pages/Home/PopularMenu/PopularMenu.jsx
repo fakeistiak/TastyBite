@@ -30,6 +30,11 @@ const PopularMenu = () => {
           <MenuItem key={item._id} item={item}></MenuItem>
         ))}
       </div>
+      <div className="text-center py-8">
+        <button className="btn btn-outline text-black hover:bg-black hover:text-white">
+          View Full Menu
+        </button>
+      </div>
     </div>
   );
 };
