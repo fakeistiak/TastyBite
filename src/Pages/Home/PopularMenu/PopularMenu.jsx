@@ -5,7 +5,7 @@ import "aos/dist/aos.css";
 import useMenu from "../../../hooks/useMenu";
 
 
-Aos.init({duration: 2000});
+Aos.init({duration: 3000});
 
 const PopularMenu = () => {
   const [menu] = useMenu();

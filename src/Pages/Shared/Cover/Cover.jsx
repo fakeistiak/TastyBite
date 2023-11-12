@@ -11,15 +11,17 @@ const Cover = ({ img, title }) => {
       <div className="w-full h-[38rem] sm:h-[20rem] md:h-[32rem]">
         <div className="flex items-center justify-center w-full h-full">
           <div className="text-center">
-            <div className="max-w-md">
-              <h1 className="text-3xl font-bold uppercase text-white lg:text-4xl">
+            <div className="max-w-xl bg-black bg-opacity-60 h-60 p-8 mx-auto">
+              <h1 className="text-3xl font-bold uppercase text-orange-500 lg:text-4xl pb-2">
                 {title}
               </h1>
-              <p className="mb-5"></p>
+              <p className="mb-5 text-white">
+                {title} is a convenient and quick culinary option, characterized
+                by pre-prepared and easily accessible meals. Typically high in
+                calories and low in nutritional value, it satisfies cravings for
+                instant gratification.
+              </p>
             </div>
-            <button className="w-full px-5 py-2 mt-4 text-sm font-medium text-white capitalize transition-colors duration-300 transform bg-orange-500 rounded-md lg:w-auto hover:bg-orange-600 focus:outline-none focus:bg-orange-600">
-              Start project
-            </button>
           </div>
         </div>
       </div>
