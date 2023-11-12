@@ -1,23 +1,15 @@
-import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import MenuItem from "../../Shared/MenuItem/MenuItem";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import useMenu from "../../../hooks/useMenu";
 
-// Initialize AOS outside the component
+
 Aos.init({duration: 2000});
 
 const PopularMenu = () => {
-  const [menu, setMenu] = useState([]);
-
-  useEffect(() => {
-    fetch("/menu.json")
-      .then((res) => res.json())
-      .then((data) => {
-        const popularItems = data.filter((item) => item.category === "popular");
-        setMenu(popularItems);
-      });
-  }, []);
+  const [menu] = useMenu();
+  const popular = menu.filter(item => item.category === "popular");
 
   return (
     <div className="mb-12">
@@ -26,9 +18,10 @@ const PopularMenu = () => {
         subHeading="Popular Items"
       ></SectionTitle>
       <div className="grid md:grid-cols-2 gap-10" data-aos="fade-down">
-        {menu.map((item) => (
+        {
+          popular.map(item => 
           <MenuItem key={item._id} item={item}></MenuItem>
-        ))}
+        )}
       </div>
       <div className="text-center py-8">
         <button className="btn btn-outline text-black hover:bg-black hover:text-white">

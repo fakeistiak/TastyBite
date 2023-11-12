@@ -51,7 +51,7 @@ const MenuCounter = () => {
             <TbTruckDelivery className="text-7xl mt-2 text-orange-500"></TbTruckDelivery>
             <h1 className="text-4xl font-bold text-orange-500">
               {counterStart && (
-                <CountUp delay={0.2} end={65000} duration={1.5} />
+                <CountUp delay={0.2} end={150000} duration={1.5} />
               )}
               +
             </h1>

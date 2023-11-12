@@ -7,10 +7,14 @@ import MenuCounter from "./MenuCounter/MenuCounter";
 import PopularMenu from "./PopularMenu/PopularMenu";
 // import Recommendation from "./Recomendation/Recommendation";
 import Testimonials from "./Testimonials/Testimonials";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
     return (
       <div>
+        <Helmet>
+          <title>TastyBite | Home</title>
+        </Helmet>
         <Banner></Banner>
         <Category></Category>
         <MenuCounter></MenuCounter>

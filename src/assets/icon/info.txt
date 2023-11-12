@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Butler_Medium
+font link: http://fabiandesmet.com/portfolio/butler-font/
+font author: Fabian De Smet
+font author site: http://fabiandesmet.com/
+
+
+icon designer: Adrien Coquet
+icon designer link: /coquet_adrien
+        
+{"bg-gradient-0":"#F00079","bg-gradient-1":"#F2A041","icon":"#ffffff","font":"#ffffff","slogan":"#ffffff"}
+      
