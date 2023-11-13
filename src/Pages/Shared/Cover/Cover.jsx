@@ -1,4 +1,5 @@
 import { Parallax } from "react-parallax";
+import { Link } from "react-router-dom";
 
 const Cover = ({ img, title }) => {
   return (
@@ -21,6 +22,12 @@ const Cover = ({ img, title }) => {
                 calories and low in nutritional value, it satisfies cravings for
                 instant gratification.
               </p>
+              <Link
+                to={`/order/${title}`}
+                className="btn bg-orange-500 text-white hover:bg-orange-700"
+              >
+                Order Now
+              </Link>
             </div>
           </div>
         </div>

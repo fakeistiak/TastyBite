@@ -8,7 +8,7 @@ const AboutUs = () => {
             'url("https://i.ibb.co/WDMscJR/side-view-male-chef-flambeing-dish-1.jpg")',
         }}
       >
-        <div className="text-center flex justify-center items-center w-full mx-auto bg-white p-4 md:p-8 lg:p-12">
+        <div className="text-center flex justify-center items-center mx-auto bg-white p-4 md:p-8 lg:p-12">
           <h3 className="text-xl md:text-4xl lg:text-5xl font-bold mb-4 w-full md:w-[762px] font-serif">
             TastyBite <br />
             <span className="text-base md:text-lg lg:text-xl font-medium">

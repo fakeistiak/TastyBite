@@ -3,6 +3,7 @@ import MenuItem from "../../Shared/MenuItem/MenuItem";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import useMenu from "../../../hooks/useMenu";
+import { Link } from "react-router-dom";
 
 
 Aos.init({duration: 3000});
@@ -24,9 +25,9 @@ const PopularMenu = () => {
         )}
       </div>
       <div className="text-center py-8">
-        <button className="btn btn-outline text-black hover:bg-black hover:text-white">
+        <Link to="/menu" className="btn btn-outline text-black hover:bg-black hover:text-white">
           View Full Menu
-        </button>
+        </Link>
       </div>
     </div>
   );
