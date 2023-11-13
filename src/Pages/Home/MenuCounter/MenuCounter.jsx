@@ -15,7 +15,7 @@ const MenuCounter = () => {
         onEnter={() => setCounterStart(true)}
         onExit={() => setCounterStart(false)}
       >
-        <div className="grid grid-cols-4 gap-4 my-20 pl-12">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-4 my-20 pl-12">
           <div className="shadow-2xl rounded-xl h-[250px] w-[250px] flex flex-col justify-center items-center pb-8 gap-4">
             <BsFillHouseFill className="text-7xl mt-2 text-orange-500"></BsFillHouseFill>
             <h1 className="text-4xl font-bold text-orange-500">
