@@ -51,7 +51,7 @@ const Navbar = () => {
           <div className="normal-case font-bold text-center">
             <h1 className="lg:text-3xl pl-4 sm:text-sm font-extrabold">
               <span>
-                Tasty <span className="text-orange-500">Bite</span>
+                Tasty<span className="text-orange-500">Bite</span>
               </span>
             </h1>
           </div>
@@ -62,9 +62,9 @@ const Navbar = () => {
         <div className="navbar-end">
           <div className="flex flex-col items-center px-4">
             <Link to="/">
-              <button className="btn bg-orange-500 hover:bg-orange-700 text-white">
+              <Link to="/login" className="btn bg-orange-500 hover:bg-orange-700 text-white">
                 Login
-              </button>
+              </Link>
             </Link>
           </div>
         </div>
