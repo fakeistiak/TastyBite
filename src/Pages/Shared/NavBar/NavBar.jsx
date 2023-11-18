@@ -68,22 +68,34 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className="navbar-end">
-          <div className="flex flex-col items-center px-4">
-            {user ? 
+          <div className="flex flex-co items-center px-4">
+            <div className="flex-col text-center">
+              {user && (
+                <img
+                  className="w-10 h-10 avatar rounded-full object-cover"
+                  src={user?.photoURL}
+                  alt="User_avatar"
+                />
+              )}
+              <h1 className="sm:text-sm text-white">
+                {user && user?.displayName}
+              </h1>
+            </div>
+
+            {user ? (
               <button
                 onClick={handleLogOut}
-                className="btn bg-orange-500 hover:bg-orange-700 text-white"
+                className="btn bg-orange-500 hover:bg-orange-700 text-white ml-4"
               >
-                Logout
+                Log Out
               </button>
-             : 
-              <Link
-                to="/login"
-                className="btn bg-orange-500 hover:bg-orange-700 text-white"
-              >
-                Login
+            ) : (
+              <Link to="/login">
+                <button className="bg-orange-500 hover:bg-orange-700 text-lg px-7 md:px-8 lg:px-6 text-center py-2 mt-3 font-medium text-white justify-center items-center cursor-pointer w-full block rounded-md">
+                  Login
+                </button>
               </Link>
-            }
+            )}
           </div>
         </div>
       </div>

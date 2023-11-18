@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
@@ -14,10 +15,12 @@ const Register = () => {
   const {
   register,
     handleSubmit,
+    reset,
   formState: { errors },
   } = useForm();
 
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   
   
@@ -27,6 +30,20 @@ const Register = () => {
       .then(result => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        updateUser(data.name, data.photoURL)
+          .then(() => {
+            console.log('updated successfully')
+            reset();
+             Swal.fire({
+               position: "center",
+               icon: "success",
+               title: "User Created Successfully",
+               showConfirmButton: false,
+               timer: 1500,
+             });
+            navigate('/')
+          })
+        .catch(error=>console.log(error))
     })
 
   };
@@ -88,6 +105,19 @@ const Register = () => {
               />
             </div>
             {errors.email && <p className="text-red-600">email is required.</p>}
+            <div className="relative flex items-center mt-6">
+              <div className="absolute">
+                <HiOutlineMail className="w-6 h-6 mx-3" />
+              </div>
+              <input
+                type="text"
+                name="photoURL"
+                {...register("photoURL", { required: true })}
+                className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11"
+                placeholder="Photo URL"
+              />
+            </div>
+            {errors.photoURL && <p className="text-red-600">Photo URL is required.</p>}
 
             {/* <label className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer  ">
               <svg
@@ -136,7 +166,7 @@ const Register = () => {
             )}
             {errors.password?.type === "pattern" && (
               <p className="text-red-600">
-                Password must have 1 upper case 1 lower case and one special characters
+                Password must have 1 upper case 1 lower case character
               </p>
             )}
 

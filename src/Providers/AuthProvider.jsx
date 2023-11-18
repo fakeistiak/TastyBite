@@ -5,7 +5,8 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
-//   updateProfile,
+  updateProfile,
+
 } from "firebase/auth";
 import {app} from "../firebase/firebase.config";
 
@@ -21,12 +22,12 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
-//   const updateUser = ({ name, photo }) => {
-//     return updateProfile(auth.currentUser, {
-//       displayName: name,
-//       photoURL: photo,
-//     });
-//   };
+  const updateUser = ({ name, photo }) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
   const signIn = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
@@ -37,12 +38,6 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-//   const [brands, setBrands] = useState([]);
-//   useEffect(() => {
-//     fetch("https://assignment-10-k90fiwama-fakeistiak.vercel.app/brand")
-//       .then((res) => res.json())
-//       .then((data) => setBrands(data));
-//   }, []);
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -61,7 +56,8 @@ const AuthProvider = ({ children }) => {
     loading,
     createUser,
     signIn,
-    logOut
+    logOut,
+    updateUser
   };
 
   return (
