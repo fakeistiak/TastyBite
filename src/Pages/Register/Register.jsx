@@ -2,15 +2,45 @@ import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { data } from "autoprefixer";
+import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+
 
 const Register = () => {
+
+  const {
+  register,
+    handleSubmit,
+  formState: { errors },
+  } = useForm();
+
+  const { createUser } = useContext(AuthContext);
+
+  
+  
+  const onSubmit = (data) => {
+    console.log(data);
+    createUser(data.email, data.password)
+      .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+    })
+
+  };
+
   return (
     <div>
+      <Helmet>
+        <title>TastyBite || Sign Up</title>
+      </Helmet>
       <section className="bg-gray-200">
         <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
-          <form className="w-full max-w-md">
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md">
             <div className="normal-case font-bold text-center text-white">
-              <h1 className="lg:text-3xl pl-4 sm:text-sm font-extrabold">
+              <h1 className="lg:text-3xl md:2xl pl-4 sm:text-xl font-extrabold">
                 <span>
                   Tasty<span className="text-orange-500">Bite</span>
                 </span>
@@ -39,10 +69,12 @@ const Register = () => {
               <input
                 type="text"
                 name="name"
+                {...register("name", { required: true })}
                 className="block w-full py-3 bg-white border rounded-lg px-11"
                 placeholder="Username"
               />
             </div>
+            {errors.name && <p className="text-red-600">name is required.</p>}
             <div className="relative flex items-center mt-6">
               <div className="absolute">
                 <HiOutlineMail className="w-6 h-6 mx-3" />
@@ -50,12 +82,14 @@ const Register = () => {
               <input
                 type="email"
                 name="email"
+                {...register("email", { required: true })}
                 className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11"
                 placeholder="Email address"
               />
             </div>
+            {errors.email && <p className="text-red-600">email is required.</p>}
 
-            <label className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer  ">
+            {/* <label className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer  ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6"
@@ -69,7 +103,7 @@ const Register = () => {
               <h2 className="mx-3 text-gray-400">Profile Photo</h2>
 
               <input id="dropzone-file" type="file" className="hidden" />
-            </label>
+            </label> */}
 
             <div className="relative flex items-center mt-4">
               <div className="absolute">
@@ -78,15 +112,36 @@ const Register = () => {
               <input
                 type="password"
                 name="password"
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 20,
+                  pattern:
+                    /(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z])/,
+                })}
                 className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg"
                 placeholder="Password"
               />
             </div>
+            {errors.password?.type === "required" && (
+              <p className="text-red-600">password is required.</p>
+            )}
+            {errors.password?.type === "minLength" && (
+              <p className="text-red-600">Password must be 6 characters</p>
+            )}
+            {errors.password?.type === "maxLength" && (
+              <p className="text-red-600">
+                Password must be less than 20 characters
+              </p>
+            )}
+            {errors.password?.type === "pattern" && (
+              <p className="text-red-600">
+                Password must have 1 upper case 1 lower case and one special characters
+              </p>
+            )}
 
             <div className="mt-6">
-              <button className="btn w-full bg-orange-500 text-white hover:bg-orange-700">
-                Sign Up
-              </button>
+              <input type="submit" value="Sign Up" className="btn w-full bg-orange-500 text-white hover:bg-orange-700"/>
             </div>
           </form>
         </div>
