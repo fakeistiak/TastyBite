@@ -21,18 +21,20 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  console.log(location.state)
 
     const [setUser] = useState(null);
     const auth = getAuth(app);
-   const provider = new GoogleAuthProvider();
+  const provider = new GoogleAuthProvider();
+  
+
    const handleGoogleSignIn = () => {
      signInWithPopup(auth, provider)
        .then((result) => {
-         <Navigate to="/login"></Navigate>;
-
          const loggedInUser = result.user;
          console.log(loggedInUser);
          setUser(loggedInUser);
+          navigate(from, { replace: true });
        })
        .catch((error) => {
          Swal.fire({
@@ -40,13 +42,15 @@ const Login = () => {
            icon: "success",
            title: "You have successfully logged in",
            showConfirmButton: false,
-           timer: 1500,
+           timer: 2000,
          });
          console.error(error);
-         return navigate(location?.state ? location.state : "/");
+         navigate(from,{replace:true});
+         return navigate(location?.state? location.state : "/");
          // console.error(error)
        });
-   };
+  };
+  
 
 
   useEffect(() => {
