@@ -7,7 +7,7 @@ import useCart from "../../../hooks/useCart";
 const Navbar = () => {
    const { user, logOut } = useContext(AuthContext);
   const [cart] = useCart();
-   console.log(user?.displayName);
+  //  console.log(user?.displayName);
    const handleLogOut = () => {
      logOut().then().catch();
    };
@@ -25,11 +25,11 @@ const Navbar = () => {
       <li className="font-bold">
         <NavLink to="/carts">My Cart</NavLink>
       </li>
-      <Link to="/">
-        <NavLink className="btn bg-orange-500 border-orange-500 hover:border-orange-600 text-white hover:bg-orange-600">
+      <Link to="/dashboard/cart">
+        <button className="btn bg-orange-500 border-orange-500 hover:border-orange-600 text-white hover:bg-orange-600">
           <FaShoppingCart className="text-xl" />
           <div className="badge badge-secondary">+{ cart.length}</div>
-        </NavLink>
+        </button>
       </Link>
     </>
   );
